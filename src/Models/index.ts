@@ -1,0 +1,5 @@
+export * from "./HallModel"
+export * from "./BuildingModel"
+export * from "./ClassModel"
+export * from "./TeacherModel"
+export * from "./HallsTypesModel"
