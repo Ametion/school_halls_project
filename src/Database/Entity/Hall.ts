@@ -24,10 +24,10 @@ export class Hall extends BaseEntity{
     isFree: boolean
 
     @ManyToOne(() => Teacher, t => t.hall, {nullable: true})
-    teacher: Teacher
+    teacher: Teacher | null
 
     @ManyToOne(() => Class, c => c.hall, {nullable: true})
-    class: Class
+    class: Class | null
 
     @ManyToOne(() => Building, b => b.hall, {nullable: false})
     building: Building
