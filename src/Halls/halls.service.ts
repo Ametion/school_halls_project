@@ -35,27 +35,27 @@ export class HallsService {
         }
     }
 
-    public async BookAHall(bookAHallDTO: BookHallDTO): Promise<boolean>{
+    public async BookAHall(bookHallDTO: BookHallDTO): Promise<boolean>{
         try{
-            if(!await this.IsHallExist(bookAHallDTO.hallId)){
+            if(!await this.IsHallExist(bookHallDTO.hallId)){
                 return false
             }
 
             const hall = await HallsRepo.findOneOrFail({
                 where: {
-                    id: bookAHallDTO.hallId
+                    id: bookHallDTO.hallId
                 }
             })
 
             hall.isFree = false
             hall.teacher = await TeachersRepo.findOneOrFail({
                 where: {
-                    id: bookAHallDTO.teacherId
+                    id: bookHallDTO.teacherId
                 }
             })
             hall.class = await ClassesRepo.findOneOrFail({
                 where: {
-                    id: bookAHallDTO.classId
+                    id: bookHallDTO.classId
                 }
             })
 
