@@ -26,6 +26,8 @@ export class TeacherService{
                 secondName: teacherDTO.secondName
             })
 
+            await teacher.save()
+
             return true
         }catch{
             return false
