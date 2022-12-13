@@ -3,7 +3,7 @@ import {HallsTypesService} from "./hallsTypes.service";
 import {HallsTypesModel} from "../Models";
 
 @Controller()
-export class HallsTypesController{
+export class HallTypesController {
     private readonly hallsTypesService: HallsTypesService
 
     constructor(hallsTypesService: HallsTypesService) {
@@ -11,7 +11,7 @@ export class HallsTypesController{
     }
 
     @HttpCode(200)
-    @Get("/hallsTypes")
+    @Get("/hallTypes")
     public async GetAllHallsTypes(): Promise<Array<HallsTypesModel>>{
         return await this.hallsTypesService.GetAllHallsTypes()
     }
