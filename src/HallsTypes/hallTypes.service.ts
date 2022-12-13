@@ -3,7 +3,7 @@ import {HallsTypesRepo} from "../Database/DatabaseRepositories";
 import {HallsTypesModel} from "../Models";
 
 @Injectable()
-export class HallsTypesService{
+export class HallTypesService {
     public async GetAllHallsTypes(): Promise<Array<HallsTypesModel>>{
         try{
             const arr = new Array<HallsTypesModel>()

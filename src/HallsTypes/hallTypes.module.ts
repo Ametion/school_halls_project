@@ -1,9 +1,9 @@
 import {Module} from "@nestjs/common";
 import {HallTypesController} from "./hallTypes.controller";
-import {HallsTypesService} from "./hallsTypes.service";
+import {HallTypesService} from "./hallTypes.service";
 
 @Module({
-    providers: [HallsTypesService],
+    providers: [HallTypesService],
     controllers: [HallTypesController]
 })
-export class HallsTypesModule { }
+export class HallTypesModule { }

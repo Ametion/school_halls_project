@@ -1,12 +1,12 @@
 import {Controller, Get, HttpCode} from "@nestjs/common";
-import {HallsTypesService} from "./hallsTypes.service";
+import {HallTypesService} from "./hallTypes.service";
 import {HallsTypesModel} from "../Models";
 
 @Controller()
 export class HallTypesController {
-    private readonly hallsTypesService: HallsTypesService
+    private readonly hallsTypesService: HallTypesService
 
-    constructor(hallsTypesService: HallsTypesService) {
+    constructor(hallsTypesService: HallTypesService) {
         this.hallsTypesService = hallsTypesService
     }
 
