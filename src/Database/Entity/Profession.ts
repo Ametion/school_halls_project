@@ -7,7 +7,8 @@ export class Profession extends BaseEntity{
     id: number
 
     @Column({
-        nullable: false
+        nullable: false,
+        unique: true
     })
     profession: string
 

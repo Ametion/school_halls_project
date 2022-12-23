@@ -4,6 +4,7 @@ import {BuildingModel, HallModel} from "../Models";
 import {BookHallDTO} from "../DTO/BookHallDTO";
 import {Teacher} from "../Database/Entity";
 import {VacateHallDTO} from "../DTO/VacateHallDTO";
+import {AddHallDTO} from "../DTO/AddHallDTO";
 
 @Injectable()
 export class HallsService {
@@ -89,6 +90,26 @@ export class HallsService {
             return true
         }catch{
             return false
+        }
+    }
+
+    public async AddHall(addHallDTO: AddHallDTO): Promise<boolean>{
+        try{
+            const hall = HallsRepo.create({
+                hallType: {
+                    id: addHallDTO.hallTypeId
+                },
+                building: {
+                    id: addHallDTO.buildingId
+                },
+                hallNumber: addHallDTO.hallNumber
+            })
+
+            await hall.save()
+
+            return true
+        }catch{
+            return false;
         }
     }
 

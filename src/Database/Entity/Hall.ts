@@ -13,7 +13,8 @@ export class Hall extends BaseEntity{
     hallType: HallType
 
     @Column({
-        nullable: false
+        nullable: false,
+        unique: true
     })
     hallNumber: number;
 
