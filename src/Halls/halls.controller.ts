@@ -20,6 +20,12 @@ export class HallsController{
     }
 
     @HttpCode(200)
+    @Get("/halls")
+    public async GetAllHalls(): Promise<Array<HallModel>>{
+        return await this.hallService.GetAllHalls();
+    }
+
+    @HttpCode(200)
     @Patch("/bookHall")
     @UsePipes(ValidationPipe)
     public async BookAHall(@Body() bookAHallDTO: BookHallDTO): Promise<boolean>{

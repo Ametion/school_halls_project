@@ -36,6 +36,31 @@ export class HallsService {
         }
     }
 
+    public async GetAllHalls(): Promise<Array<HallModel>>{
+        try{
+            const arr = new Array<HallModel>()
+
+            const halls = await HallsRepo.find({
+                relations: {
+                    building: true,
+                    teacher: true,
+                    hallType: true,
+                    class: {
+                        classTeacher: true,
+                        profession: true,
+                    }
+                }
+            })
+
+            halls.forEach(h => arr.push(new HallModel(h.id, h.hallType.type, h.hallNumber, h.isFree,
+                null, null,  new BuildingModel(h.building.id, h.building.buildingName))))
+
+            return arr
+        }catch{
+            return []
+        }
+    }
+
     public async BookAHall(bookHallDTO: BookHallDTO): Promise<boolean>{
         try{
             if(!await this.IsHallExist(bookHallDTO.hallId)){
