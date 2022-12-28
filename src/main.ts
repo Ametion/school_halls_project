@@ -4,7 +4,7 @@ import {databaseConnection} from "./Database/DatabaseConnection";
 
 async function bootstrap() {
   await databaseConnection.initialize()
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {cors: true});
   await app.listen(3000);
 }
 bootstrap();
