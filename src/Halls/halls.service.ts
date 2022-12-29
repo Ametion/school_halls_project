@@ -67,6 +67,10 @@ export class HallsService {
                 return false
             }
 
+            if(!await this.IsHallFree(bookHallDTO.hallId)){
+                return false
+            }
+
             const hall = await HallsRepo.findOneOrFail({
                 where: {
                     id: bookHallDTO.hallId
@@ -149,6 +153,20 @@ export class HallsService {
             return true
         }catch{
             return false
+        }
+    }
+
+    private async IsHallFree(hallId: number): Promise<boolean> {
+        try {
+            const hall = await HallsRepo.findOneOrFail({
+                where: {
+                    id: hallId
+                }
+            })
+
+            return hall.isFree;
+        }catch {
+            return false;
         }
     }
 }
