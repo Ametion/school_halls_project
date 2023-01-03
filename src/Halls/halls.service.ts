@@ -2,12 +2,19 @@ import {Injectable} from "@nestjs/common";
 import {ClassesRepo, HallsRepo, TeachersRepo} from "../Database/DatabaseRepositories";
 import {BuildingModel, HallModel} from "../Models";
 import {BookHallDTO} from "../DTO/BookHallDTO";
-import {Teacher} from "../Database/Entity";
 import {VacateHallDTO} from "../DTO/VacateHallDTO";
 import {AddHallDTO} from "../DTO/AddHallDTO";
+import {HallsHistoryService} from "../HallsHistory/hallsHistory.service";
 
 @Injectable()
 export class HallsService {
+
+    private readonly hallsHistoryService: HallsHistoryService;
+
+    constructor(hallsHistoryService: HallsHistoryService) {
+        this.hallsHistoryService =  hallsHistoryService;
+    }
+
     public async GetAllFreeHalls(): Promise<Array<HallModel>>{
         try{
             const arr = new Array<HallModel>()
@@ -91,6 +98,8 @@ export class HallsService {
 
             await hall.save()
 
+            await this.hallsHistoryService.AddHistory(hall.id, hall.teacher.id);
+
             return true
         }catch{
             return false
@@ -115,6 +124,7 @@ export class HallsService {
 
             await hall.save()
 
+            await this.hallsHistoryService.VacateHistory(hall.id)
 
             return true
         }catch{

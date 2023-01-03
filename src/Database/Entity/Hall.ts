@@ -1,8 +1,9 @@
-import {BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import {BaseEntity, Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {HallType} from "./HallTypes";
 import {Teacher} from "./Teacher";
 import {Class} from "./Class";
 import {Building} from "./Building";
+import {HallsHistory} from "./HallsHistory";
 
 @Entity("halls")
 export class Hall extends BaseEntity{
@@ -25,11 +26,14 @@ export class Hall extends BaseEntity{
     isFree: boolean
 
     @ManyToOne(() => Teacher, t => t.hall, {nullable: true})
-    teacher: Teacher | null
+    teacher: Teacher | null;
 
     @ManyToOne(() => Class, c => c.hall, {nullable: true})
-    class: Class | null
+    class: Class | null;
 
     @ManyToOne(() => Building, b => b.hall, {nullable: false})
-    building: Building
+    building: Building;
+
+    @OneToMany(() => HallsHistory, h => h.hall)
+    hallHistory: HallsHistory;
 }

@@ -1,6 +1,7 @@
 import {BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {Hall} from "./Hall";
 import {Class} from "./Class";
+import {HallsHistory} from "./HallsHistory";
 
 @Entity("teachers")
 export class Teacher extends BaseEntity{
@@ -21,5 +22,8 @@ export class Teacher extends BaseEntity{
     hall: Hall
 
     @OneToMany(() => Class, c => c.classTeacher)
-    class: Class
+    class: Class;
+
+    @OneToMany(() => HallsHistory, h => h.teacher)
+    hallHistory: HallsHistory;
 }
