@@ -34,7 +34,7 @@ export class HallsService {
                 }
             })
 
-            halls.forEach(h => arr.push(new HallModel(h.id, h.hallType.type, h.hallNumber, h.isFree,
+            halls.forEach(h => arr.push(new HallModel(h.id, h.hallType.type, h.hallNumber, h.isFree, h.seatsAmount,
                 null, null,  new BuildingModel(h.building.id, h.building.buildingName))))
 
             return arr
@@ -59,7 +59,7 @@ export class HallsService {
                 }
             })
 
-            halls.forEach(h => arr.push(new HallModel(h.id, h.hallType.type, h.hallNumber, h.isFree,
+            halls.forEach(h => arr.push(new HallModel(h.id, h.hallType.type, h.hallNumber, h.isFree, h.seatsAmount,
                 null, null,  new BuildingModel(h.building.id, h.building.buildingName))))
 
             return arr
@@ -141,7 +141,8 @@ export class HallsService {
                 building: {
                     id: addHallDTO.buildingId
                 },
-                hallNumber: addHallDTO.hallNumber
+                hallNumber: addHallDTO.hallNumber,
+                seatsAmount: addHallDTO.seatsAmount
             })
 
             await hall.save()

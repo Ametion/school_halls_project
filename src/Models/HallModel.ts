@@ -7,16 +7,18 @@ export class HallModel{
     public readonly hallType: string;
     public readonly hallNumber: number;
     public readonly isFree: boolean;
+    public readonly seatsAmount: number;
     public readonly teacher: TeacherModel | null;
     public readonly class: ClassModel | null;
     public readonly building: BuildingModel | null;
 
-    constructor(hallId: number, hallType: string, hallNumber: number, isFree: boolean,
+    constructor(hallId: number, hallType: string, hallNumber: number, isFree: boolean, seatsAmount: number,
                 teacher: TeacherModel | null, _class: ClassModel | null,  building: BuildingModel | null) {
         this.hallId = hallId
         this.hallType = hallType
         this.hallNumber = hallNumber
         this.isFree = isFree
+        this.seatsAmount = seatsAmount
         this.teacher = teacher
         this.class = _class;
         this.building = building

@@ -25,6 +25,11 @@ export class Hall extends BaseEntity{
     })
     isFree: boolean
 
+    @Column({
+        nullable: false
+    })
+    seatsAmount: number;
+
     @ManyToOne(() => Teacher, t => t.hall, {nullable: true})
     teacher: Teacher | null;
 

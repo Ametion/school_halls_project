@@ -61,7 +61,7 @@ export class HallsHistoryService{
 
             history.forEach(h => arr.push(new HallHistoryModel(h.id, h.reservedDate, h.vacateDate,
                 new TeacherModel(h.teacher.id, h.teacher.firstName, h.teacher.secondName),
-                new HallModel(h.hall.id, h.hall.hallType.type, h.hall.hallNumber, h.hall.isFree, null, null, new BuildingModel(h.hall.building.id, h.hall.building.buildingName)))))
+                new HallModel(h.hall.id, h.hall.hallType.type, h.hall.hallNumber, h.hall.isFree, h.hall.seatsAmount, null, null, new BuildingModel(h.hall.building.id, h.hall.building.buildingName)))))
 
             return arr
         }catch{
