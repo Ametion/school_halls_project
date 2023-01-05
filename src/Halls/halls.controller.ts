@@ -20,6 +20,12 @@ export class HallsController{
     }
 
     @HttpCode(200)
+    @Get("/occupiedHalls")
+    public async GetAllOccupiedHall(): Promise<Array<HallModel>>{
+        return await this.hallService.GetAllOccupiedHall();
+    }
+
+    @HttpCode(200)
     @Get("/halls")
     public async GetAllHalls(): Promise<Array<HallModel>>{
         return await this.hallService.GetAllHalls();

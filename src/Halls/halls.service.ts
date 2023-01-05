@@ -43,6 +43,34 @@ export class HallsService {
         }
     }
 
+    public async GetAllOccupiedHall(): Promise<Array<HallModel>>{
+        try{
+            const arr = new Array<HallModel>();
+
+            const halls = await HallsRepo.find({
+                where: {
+                    isFree: false
+                },
+                relations: {
+                    building: true,
+                    teacher: true,
+                    hallType: true,
+                    class: {
+                        classTeacher: true,
+                        profession: true,
+                    }
+                }
+            })
+
+            halls.forEach(h => arr.push(new HallModel(h.id, h.hallType.type, h.hallNumber, h.isFree, h.seatsAmount,
+                null, null,  new BuildingModel(h.building.id, h.building.buildingName))))
+
+            return arr;
+        }catch{
+            return []
+        }
+    }
+
     public async GetAllHalls(): Promise<Array<HallModel>>{
         try{
             const arr = new Array<HallModel>()
