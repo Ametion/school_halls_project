@@ -14,7 +14,7 @@ export class HallsHistoryService{
                 teacher: {
                     id: teacherId
                 },
-                reservedDate: new Date().toISOString()
+                reservedDate: new Date().toISOString(),
             });
 
             await hall.save();
@@ -27,7 +27,7 @@ export class HallsHistoryService{
 
     public async VacateHistory(hallId: number): Promise<boolean> {
         try{
-            const hall = await HallsHistoryRepo.findOneOrFail({
+            const halls = await HallsHistoryRepo.find({
                 where: {
                     hall: {
                         id: hallId
@@ -35,9 +35,12 @@ export class HallsHistoryService{
                 }
             })
 
-            hall.vacateDate = new Date().toISOString()
-
-            await hall.save();
+            for (const h of halls) {
+                if(h.vacateDate == null){
+                    h.vacateDate = new Date().toISOString()
+                    await h.save()
+                }
+            }
 
             return true
         }catch{
@@ -59,7 +62,7 @@ export class HallsHistoryService{
                 }
             })
 
-            history.forEach(h => arr.push(new HallHistoryModel(h.id, h.reservedDate, h.vacateDate,
+            history.forEach(h => arr.push(new HallHistoryModel(h.id, h.reservedDate, h.vacateDate!,
                 new TeacherModel(h.teacher.id, h.teacher.firstName, h.teacher.secondName),
                 new HallModel(h.hall.id, h.hall.hallType.type, h.hall.hallNumber, h.hall.isFree, h.hall.seatsAmount, null, null, new BuildingModel(h.hall.building.id, h.hall.building.buildingName)))))
 
