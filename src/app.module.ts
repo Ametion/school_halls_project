@@ -5,8 +5,9 @@ import {TeacherModule} from "./Teachers/teacher.module";
 import {ClassesModule} from "./Classes/classes.module";
 import {BuildingsModule} from "./Buildings/buildings.module";
 import {HallsHistoryModule} from "./HallsHistory/hallsHistory.module";
+import {ProfessionsModule} from "./Professions/professions.module";
 
 @Module({
-  imports: [HallsModule, HallTypesModule, TeacherModule, ClassesModule, BuildingsModule, HallsHistoryModule]
+  imports: [HallsModule, HallTypesModule, TeacherModule, ClassesModule, BuildingsModule, HallsHistoryModule, ProfessionsModule]
 })
 export class AppModule {}
