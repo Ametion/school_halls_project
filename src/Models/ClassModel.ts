@@ -7,7 +7,7 @@ export class ClassModel{
     public readonly classStudentsAmount: number;
     public readonly classTeacher: TeacherModel | null;
 
-    constructor(classId: number, className: string, classProfession: string, classStudentsAmount: number, classTeacher: TeacherModel | null) {
+    constructor(classId: any, className: any, classProfession: any, classStudentsAmount: any, classTeacher: TeacherModel | null) {
         this.classId = classId;
         this.className = className;
         this.classProfession = classProfession;

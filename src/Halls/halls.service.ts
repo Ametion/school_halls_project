@@ -1,6 +1,6 @@
 import {Injectable} from "@nestjs/common";
 import {ClassesRepo, HallsRepo, TeachersRepo} from "../Database/DatabaseRepositories";
-import {BuildingModel, HallModel} from "../Models";
+import {BuildingModel, ClassModel, HallModel, TeacherModel} from "../Models";
 import {BookHallDTO} from "../DTO/BookHallDTO";
 import {VacateHallDTO} from "../DTO/VacateHallDTO";
 import {AddHallDTO} from "../DTO/AddHallDTO";
@@ -63,7 +63,9 @@ export class HallsService {
             })
 
             halls.forEach(h => arr.push(new HallModel(h.id, h.hallType.type, h.hallNumber, h.isFree, h.seatsAmount,
-                null, null,  new BuildingModel(h.building.id, h.building.buildingName))))
+                new TeacherModel(h.teacher?.id, h.teacher?.firstName, h.teacher?.secondName),
+                new ClassModel(h.class?.id, h.class?.className, h.class?.profession, h.class?.studentsAmount, null),
+                new BuildingModel(h.building.id, h.building.buildingName))))
 
             return arr;
         }catch{
